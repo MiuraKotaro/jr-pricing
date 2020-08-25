@@ -6,6 +6,7 @@ package domain {
         class 申し込みフォーム
         enum 駅
         package fare {
+            class 料金
             class 運賃
             class 指定席ひかり料金
             class のぞみ割り増し料金
@@ -35,12 +36,18 @@ package api {
 }
 
 class 申し込みフォーム {
+    - 申し込みフォームID
     - 乗車駅 : 駅
     - 降車駅 : 駅
     - 利用日 : LocalDate
     - 片道往復
     - 人数
     - 特急利用
+
+    + get運賃() : 料金
+    + get指定席ひかり料金() : 料金
+    + getのぞみ割り増し料金() : 料金
+    + get距離() : 距離
 }
 enum 駅 <<区分オブジェクト>> {
     東京
@@ -52,39 +59,45 @@ enum 駅 <<区分オブジェクト>> {
     - のぞみ割り増し料金
     - 距離
 }
-class 運賃 {
-    - 運賃 : int
-}
 enum 特急利用 {
     利用しない
     ひかり指定席
     のぞみ指定席
     自由席
 }
+class 料金 {
+    - 円 : int
+}
+class 運賃 {
+    - 料金
+
+    + get円() : int
+}
 class 指定席ひかり料金 {
-    - 指定席ひかり料金 : int
+    - 料金
 }
 class のぞみ割り増し料金 {
-    - 料金 :int
+    - 料金
 }
 class 距離 {
     - キロメートル : int
 }
-enum 人数 {
-    18才以上
-    18才未満
-    --
-    人数 : int
+class 人数 {
+    人数 : int[2]
+    [18才以上, 18才未満]
 }
 class 片道往復 {
     is片道 : boolean
 }
-class 料金計算 {
-    int
-    + 料金計算(申し込みフォーム) : int
-}
 class 利用日 {
     LocalDate
+}
+
+class 料金計算 {
+    --
+    + 料金計算(申し込みフォーム) : 料金
+    + 料金計算(降車駅, 利用日, 片道往復, 人数, 特急利用) : 料金
+    どちらがいいのか
 }
 
 @enduml
