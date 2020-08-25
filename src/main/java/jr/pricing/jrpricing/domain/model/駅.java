@@ -1,21 +1,18 @@
 package jr.pricing.jrpricing.domain.model;
 
-import jr.pricing.jrpricing.domain.model.fare.のぞみ割り増し料金;
-import jr.pricing.jrpricing.domain.model.fare.指定席ひかり料金;
 import jr.pricing.jrpricing.domain.model.fare.料金;
-import jr.pricing.jrpricing.domain.model.fare.運賃;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
 public enum 駅 {
-    東京(new 運賃(new 料金(0)), new 指定席ひかり料金(new 料金(0)), new のぞみ割り増し料金(new 料金(0)), new 距離(0)),
-    新大阪(new 運賃(new 料金(8_910)), new 指定席ひかり料金(new 料金(5_490)), new のぞみ割り増し料金(new 料金(320)), new 距離(553)),
-    姫路(new 運賃(new 料金(10_010)), new 指定席ひかり料金(new 料金(5_920)), new のぞみ割り増し料金(new 料金(530)), new 距離(644));
+    東京(new 料金(0), new 料金(0), new 料金(0), new 距離(0)),
+    新大阪(new 料金(8_910), new 料金(5_490), new 料金(320), new 距離(553)),
+    姫路(new 料金(10_010), new 料金(5_920), new 料金(530), new 距離(644));
 
-    private final 運賃 _運賃;
-    private final 指定席ひかり料金 _指定席ひかり料金;
-    private final のぞみ割り増し料金 _のぞみ割り増し料金;
+    private final 料金 運賃;
+    private final 料金 指定席ひかり料金;
+    private final 料金 のぞみ割り増し料金;
     private final 距離 _距離;
 }
