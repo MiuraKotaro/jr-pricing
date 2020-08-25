@@ -3,11 +3,8 @@
 package domain {
     package model {
 
+        class 申し込みフォーム
         enum 駅
-        package ticket {
-            class 乗車券
-            class 特急券
-        }
         package fare {
             class 運賃
             class 指定席ひかり料金
@@ -15,10 +12,14 @@ package domain {
         }
         class 利用日
         class 距離
-        class 人数
-        enum 大人子供
+        enum 人数
+        class 片道往復
+        enum 特急利用
     }
 
+}
+
+package application {
     package service {
         class 料金計算
         class 特急料金計算
@@ -33,19 +34,13 @@ package domain {
 package api {
 }
 
-class 乗車券 <<Entity>> {
-    - ID
+class 申し込みフォーム {
     - 乗車駅 : 駅
     - 降車駅 : 駅
-    - 利用日
-    - 大人子供
-}
-class 特急券 <<Entity>> {
-    - ID
-    - 乗車駅 : 駅
-    - 降車駅 : 駅
-    - 利用日
-    - 大人子供
+    - 利用日 : LocalDate
+    - 片道往復
+    - 人数
+    - 特急利用
 }
 enum 駅 <<区分オブジェクト>> {
     東京
@@ -60,6 +55,12 @@ enum 駅 <<区分オブジェクト>> {
 class 運賃 {
     - 運賃 : int
 }
+enum 特急利用 {
+    利用しない
+    ひかり指定席
+    のぞみ指定席
+    自由席
+}
 class 指定席ひかり料金 {
     - 指定席ひかり料金 : int
 }
@@ -69,16 +70,18 @@ class のぞみ割り増し料金 {
 class 距離 {
     - キロメートル : int
 }
-class 人数 {
-    - 大人人数 : int
-    - 子供人数 : int
+enum 人数 {
+    18才以上
+    18才未満
+    --
+    人数 : int
 }
-enum 大人子供 {
-    大人
-    子供
+class 片道往復 {
+    is片道 : boolean
 }
 class 料金計算 {
     int
+    + 料金計算(申し込みフォーム) : int
 }
 class 利用日 {
     LocalDate
