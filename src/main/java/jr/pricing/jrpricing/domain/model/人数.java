@@ -6,5 +6,5 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class 人数 {
-    private final int[] _人数;
+    private final int _人数;
 }
