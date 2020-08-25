@@ -80,7 +80,7 @@ class のぞみ割り増し料金 {
 class 割引率 {
     - パーセント : int
 
-    + get百分率() : double
+    ~ get百分率() : double
 }
 class 距離 {
     - キロメートル : int

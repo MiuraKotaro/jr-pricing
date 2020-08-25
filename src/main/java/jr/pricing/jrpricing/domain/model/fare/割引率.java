@@ -10,7 +10,7 @@ public class 割引率 {
         this.パーセント = パーセント;
     }
 
-    public double get百分率() {
+    double get百分率() {
         return パーセント / 100.0;
     }
 }
