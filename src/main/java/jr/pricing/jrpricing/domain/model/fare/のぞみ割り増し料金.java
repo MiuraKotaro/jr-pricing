@@ -8,4 +8,5 @@ import lombok.Getter;
 public class のぞみ割り増し料金 {
     private final 料金 _料金;
 
+
 }
