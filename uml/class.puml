@@ -24,12 +24,6 @@ package domain {
 package application {
     package service {
         class 料金計算
-        class 特急料金計算
-
-        class 往復判定
-        class 距離判定
-        class 団体判定
-        class 自由席判定
     }
 }
 

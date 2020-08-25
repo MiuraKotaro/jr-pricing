@@ -7,4 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class 人数 {
     private final int _人数;
+
 }
