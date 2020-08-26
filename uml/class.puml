@@ -20,7 +20,7 @@ package domain {
 
 package application {
     package service {
-        class 料金計算
+        class 料金計算サービス
     }
 }
 
@@ -91,11 +91,16 @@ class 片道往復 {
 }
 class 利用日 {
     LocalDate
+
+    + isAfter(int month, int day) : boolean
+    + isBefore(int month, int day) : boolean
 }
 
-class 料金計算 {
+class 料金計算サービス {
     --
     + 料金計算(降車駅, 利用日, 片道往復, 人数, 人数, 特急利用) : 料金
 }
+
+駅 <-- 特急利用
 
 @enduml

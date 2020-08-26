@@ -4,9 +4,7 @@ import jr.pricing.jrpricing.domain.model.*;
 import jr.pricing.jrpricing.domain.model.fare.割引率;
 import jr.pricing.jrpricing.domain.model.fare.料金;
 
-import java.time.LocalDate;
-
-public class 料金計算 {
+public class 料金計算サービス {
     public 料金 料金計算(駅 降車駅, 利用日 _利用日, 片道往復 _片道往復, 人数 十八才以上, 人数 十八才未満, 特急利用 _特急利用) {
 
         人数 無料人数 = 無料人数計算(十八才以上.足す(十八才未満));
@@ -70,11 +68,10 @@ public class 料金計算 {
         final 人数 全体人数 = 大人人数.足す(子供人数);
 
         if (全体人数.大なりイコール(団体割引最少人数)) {
-            if (_利用日.get_利用日().isAfter(LocalDate.of(_利用日.get_利用日().getYear(), 12, 20)) &&
-                    _利用日.get_利用日().isBefore(LocalDate.of(_利用日.get_利用日().getYear(), 1, 11))) {
-                一人分片道料金 = 一人分片道料金.割引(団体年末年始割引率);
+            if (_利用日.isAfter(12, 20) && _利用日.isBefore(1, 11)) {
+                return 一人分片道料金.割引(団体年末年始割引率);
             } else {
-                一人分片道料金 = 一人分片道料金.割引(団体割引率);
+                return 一人分片道料金.割引(団体割引率);
             }
         }
 
