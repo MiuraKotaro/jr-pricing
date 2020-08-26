@@ -4,6 +4,7 @@ package domain {
     package model {
 
         class 申し込みフォーム
+        class 申し込みフォームID
         enum 駅
         package fare {
             class 料金
@@ -37,8 +38,9 @@ class 申し込みフォーム {
     - 18才以上 : 人数
     - 18才未満 : 人数
     - 特急利用
-
-
+}
+class 申し込みフォームID {
+    - id : String
 }
 enum 駅 {
     東京
@@ -55,8 +57,6 @@ enum 特急利用 {
     ひかり指定席
     のぞみ指定席
     自由席
-    --
-    # 自由席減額 : 料金
     --
     + {abstract} 指定席片道料金計算(駅 降車駅) : 料金
 }

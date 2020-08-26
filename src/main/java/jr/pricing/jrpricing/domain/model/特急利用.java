@@ -22,13 +22,14 @@ public enum 特急利用 {
         }
     },
     自由席 {
+        private final 料金 自由席減額 = new 料金(530);
+
         @Override
         public 料金 指定席片道料金計算(駅 降車駅) {
             return 降車駅.get指定席ひかり料金().引く(自由席減額);
         }
     };
 
-    protected final 料金 自由席減額 = new 料金(530);
 
     public abstract 料金 指定席片道料金計算(駅 降車駅);
 }

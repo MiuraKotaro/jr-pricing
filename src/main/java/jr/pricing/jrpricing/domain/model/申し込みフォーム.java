@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class 申し込みフォーム {
+    private final 申し込みフォームID id;
     private final 駅 乗車駅;
     private final 駅 降車駅;
     private final 利用日 _利用日;
