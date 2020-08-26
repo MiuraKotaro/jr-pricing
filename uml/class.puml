@@ -25,6 +25,7 @@ package application {
 }
 
 package api {
+    class ReserveController
 }
 
 class 申し込みフォーム {
@@ -39,7 +40,7 @@ class 申し込みフォーム {
 
 
 }
-enum 駅 <<区分オブジェクト>> {
+enum 駅 {
     東京
     新大阪
     姫路
@@ -54,11 +55,16 @@ enum 特急利用 {
     ひかり指定席
     のぞみ指定席
     自由席
+    --
+    # 自由席減額 : 料金
+    --
+    + {abstract} 指定席片道料金計算(駅 降車駅) : 料金
 }
 class 料金 {
     - 円 : int
 
     + 足す(料金) : 料金
+    + 引く(料金) : 料金
     + かける(人数) : 料金
     + 割引(割引率) : 料金
 }
@@ -76,7 +82,9 @@ class 人数 {
     - 人数 : int
 
     + 足す(人数) : 人数
+    + 引く(人数) : 人数
     + 大なりイコール(人数) : boolean
+    + plus49div50() : 人数
 }
 class 片道往復 {
     is片道 : boolean

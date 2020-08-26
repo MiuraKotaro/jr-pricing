@@ -1,10 +1,34 @@
 package jr.pricing.jrpricing.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import jr.pricing.jrpricing.domain.model.fare.料金;
 
-@Getter
-@AllArgsConstructor
 public enum 特急利用 {
-    利用しない, ひかり指定席, のぞみ指定席, 自由席;
+    利用しない {
+        @Override
+        public 料金 指定席片道料金計算(駅 降車駅) {
+            return new 料金(0);
+        }
+    },
+    ひかり指定席 {
+        @Override
+        public 料金 指定席片道料金計算(駅 降車駅) {
+            return 降車駅.get指定席ひかり料金();
+        }
+    },
+    のぞみ指定席 {
+        @Override
+        public 料金 指定席片道料金計算(駅 降車駅) {
+            return 降車駅.get指定席ひかり料金().足す(降車駅.getのぞみ割り増し料金());
+        }
+    },
+    自由席 {
+        @Override
+        public 料金 指定席片道料金計算(駅 降車駅) {
+            return 降車駅.get指定席ひかり料金().引く(自由席減額);
+        }
+    };
+
+    protected final 料金 自由席減額 = new 料金(530);
+
+    public abstract 料金 指定席片道料金計算(駅 降車駅);
 }
