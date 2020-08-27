@@ -8,7 +8,7 @@ public class 人数 {
 
     public 人数(int i) {
         if (i < 0) {
-            throw new RuntimeException("人数は0以上の整数です。");
+            throw new RuntimeException("0以上の整数を入力してください。");
         }
         _人数 = i;
     }
