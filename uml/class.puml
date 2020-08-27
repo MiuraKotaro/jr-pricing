@@ -13,7 +13,7 @@ package domain {
         class 利用日
         class 距離
         enum 人数
-        class 片道往復
+        enum 片道往復
         enum 特急利用
         enum 年齢区分
     }
@@ -93,8 +93,11 @@ class 人数 {
     + 大なりイコール(人数) : boolean
     + plus49div50() : 人数
 }
-class 片道往復 {
-    is片道 : boolean
+enum 片道往復 {
+    片道
+    往復
+    --
+    + {abstract} 往復割引計算(料金 一人分片道運賃, 距離 _距離) : 料金
 }
 class 利用日 {
     LocalDate
