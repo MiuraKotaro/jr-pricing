@@ -1,11 +1,19 @@
 package jr.pricing.jrpricing.domain.model.fare;
 
 import jr.pricing.jrpricing.domain.model.人数;
-import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 public class 料金 {
     private final int 円;
+
+    public 料金(int 円) {
+        if (円 < 0) {
+            throw new RuntimeException("0以上の整数を入力してください。");
+        }
+        if (円 % 10 != 0) {
+            throw new RuntimeException("10円単位で入力してください。");
+        }
+        this.円 = 円;
+    }
 
     public 料金 足す(料金 足す数) {
         return new 料金(円 + 足す数.円);
