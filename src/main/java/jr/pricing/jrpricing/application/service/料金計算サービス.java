@@ -1,8 +1,8 @@
 package jr.pricing.jrpricing.application.service;
 
-import jr.pricing.jrpricing.domain.model.*;
 import jr.pricing.jrpricing.domain.model.fare.割引率;
 import jr.pricing.jrpricing.domain.model.fare.料金;
+import jr.pricing.jrpricing.domain.model.*;
 
 import java.time.LocalDate;
 
@@ -15,6 +15,7 @@ public class 料金計算サービス {
         System.out.println(料金計算(駅.新大阪, new 利用日(LocalDate.now()), 片道往復.往復, new 人数(1), new 人数(0), 特急利用.利用しない).get円());
         System.out.println(料金計算(駅.新大阪, new 利用日(LocalDate.now()), 片道往復.往復, new 人数(1), new 人数(1), 特急利用.ひかり指定席).get円());
         System.out.println(料金計算(駅.姫路, new 利用日(LocalDate.now()), 片道往復.往復, new 人数(1), new 人数(1), 特急利用.ひかり指定席).get円());
+        System.out.println(料金計算(駅.姫路, new 利用日(LocalDate.now()), 片道往復.往復, new 人数(1), new 人数(30), 特急利用.ひかり指定席).get円());
     }
 
     public static 料金 料金計算(駅 降車駅, 利用日 _利用日, 片道往復 _片道往復, 人数 大人人数, 人数 子供人数, 特急利用 _特急利用) {
@@ -28,22 +29,22 @@ public class 料金計算サービス {
             子供人数 = 子供人数.引く(無料人数);
         }
 
-        料金 片道合計金額 = new 料金(0);
+        料金 片道全員金額 = new 料金(0);
         if (大人人数.大なりイコール(new 人数(1))) {
             料金 大人一人分片道料金 = 一人分片道計算(降車駅, _特急利用, _片道往復, _利用日, 大人人数, 子供人数, 年齢区分.おとな);
-            片道合計金額 = 大人一人分片道料金.かける(大人人数);
+            片道全員金額 = 大人一人分片道料金.かける(大人人数);
         }
         if (子供人数.大なりイコール(new 人数(1))) {
             料金 子供一人分片道料金 = 一人分片道計算(降車駅, _特急利用, _片道往復, _利用日, 大人人数, 子供人数, 年齢区分.こども);
-            片道合計金額 = 片道合計金額.足す(子供一人分片道料金.かける(子供人数));
+            片道全員金額 = 片道全員金額.足す(子供一人分片道料金.かける(子供人数));
         }
 
-        return _片道往復 == 片道往復.片道 ? 片道合計金額 : 片道合計金額.足す(片道合計金額);
+        return _片道往復 == 片道往復.片道 ? 片道全員金額 : 片道全員金額.足す(片道全員金額);
     }
 
     private static 料金 一人分片道計算(駅 降車駅, 特急利用 _特急利用, 片道往復 _片道往復, 利用日 _利用日, 人数 大人人数, 人数 子供人数, 年齢区分 _年齢区分) {
         料金 一人分運賃 = _年齢区分.割引計算(降車駅.get運賃());
-        一人分運賃 = 運賃割引計算(一人分運賃, 降車駅.get_距離(), _片道往復, _利用日, 大人人数, 子供人数);
+        一人分運賃 = 運賃割引計算(一人分運賃, 降車駅.getDist(), _片道往復, _利用日, 大人人数, 子供人数);
         return 一人分運賃.足す(_年齢区分.割引計算(_特急利用.get特急料金(降車駅)));
     }
 
