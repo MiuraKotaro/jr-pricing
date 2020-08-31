@@ -5,7 +5,7 @@ public class 割引率 {
 
     public 割引率(int パーセント) {
         if (パーセント > 100 || パーセント < 0) {
-            throw new RuntimeException("不正な値です");
+            throw new RuntimeException("0以上100以下の整数を入力してください。");
         }
         this.パーセント = パーセント;
     }

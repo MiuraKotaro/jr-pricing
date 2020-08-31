@@ -10,7 +10,7 @@ public class 距離 {
         this.キロメートル = キロメートル;
     }
 
-    public boolean 大なり(距離 _距離) {
-        return キロメートル > _距離.キロメートル;
+    public boolean 大なりイコール(距離 _距離) {
+        return キロメートル >= _距離.キロメートル;
     }
 }

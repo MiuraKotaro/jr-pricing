@@ -11,7 +11,7 @@ public enum 年齢区分 {
 
     private final 割引率 _割引率;
 
-    public 料金 割引計算(料金 割引前) {
-        return 割引前.割引(_割引率);
+    public 料金 割引計算(料金 割引前料金) {
+        return 割引前料金.割引(_割引率);
     }
 }

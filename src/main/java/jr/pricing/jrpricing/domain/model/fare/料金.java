@@ -1,7 +1,9 @@
 package jr.pricing.jrpricing.domain.model.fare;
 
 import jr.pricing.jrpricing.domain.model.人数;
+import lombok.Getter;
 
+@Getter
 public class 料金 {
     private final int 円;
 
