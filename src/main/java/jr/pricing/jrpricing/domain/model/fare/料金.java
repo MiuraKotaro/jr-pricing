@@ -25,8 +25,8 @@ public class 料金 {
         return new 料金(円 - 引く数.円);
     }
 
-    public 料金 かける(人数 かける数) {
-        return new 料金(円 * かける数.getValue());
+    public 料金 かける(人数 かける人数) {
+        return new 料金(円 * かける人数.getValue());
     }
 
     public 料金 割引(割引率 _割引率) {

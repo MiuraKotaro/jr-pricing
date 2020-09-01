@@ -87,11 +87,12 @@ class 距離 {
     + 大なり(距離) : boolean
 }
 class 人数 {
-    - 人数 : int
+    - value : int
 
     + 足す(人数) : 人数
     + 引く(人数) : 人数
     + 大なりイコール(人数) : boolean
+    + 大なり(人数) : boolean
     + get無料人数() : 人数
 }
 enum 片道往復 {

@@ -25,6 +25,10 @@ public class 人数 {
         return value >= 比較人数.value;
     }
 
+    public boolean 大なり(人数 比較人数) {
+        return value > 比較人数.value;
+    }
+
     public 人数 get無料人数() {
         final 人数 無料化最少人数 = new 人数(31);
         return this.大なりイコール(無料化最少人数) ? new 人数((value + 49) / 50) : new 人数(0);
