@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.3.3.RELEASE'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
+    id 'groovy'
 }
 
 group = 'jr.pricing'
@@ -11,6 +12,14 @@ sourceCompatibility = '1.8'
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
+    }
+}
+
+sourceSets {
+    test {
+        java {
+            srcDir 'src/test/groovy'
+        }
     }
 }
 
@@ -32,7 +41,7 @@ dependencies {
     }
     // https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all
     compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.4'
-
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
 
 }
 
