@@ -4,20 +4,7 @@ import jr.pricing.jrpricing.domain.model.fare.割引率;
 import jr.pricing.jrpricing.domain.model.fare.料金;
 import jr.pricing.jrpricing.domain.model.*;
 
-import java.time.LocalDate;
-
 public class 料金計算サービス {
-    public static void main(String[] args) {
-        System.out.println(料金計算(駅.姫路, new 利用日(LocalDate.now()), 片道往復.片道, new 人数(1), new 人数(0), 特急利用.利用しない).get円());
-        System.out.println(料金計算(駅.姫路, new 利用日(LocalDate.now()), 片道往復.片道, new 人数(1), new 人数(0), 特急利用.自由席).get円());
-        System.out.println(料金計算(駅.姫路, new 利用日(LocalDate.now()), 片道往復.片道, new 人数(1), new 人数(1), 特急利用.利用しない).get円());
-        System.out.println(料金計算(駅.姫路, new 利用日(LocalDate.now()), 片道往復.片道, new 人数(0), new 人数(1), 特急利用.のぞみ指定席).get円());
-        System.out.println(料金計算(駅.新大阪, new 利用日(LocalDate.now()), 片道往復.往復, new 人数(1), new 人数(0), 特急利用.利用しない).get円());
-        System.out.println(料金計算(駅.新大阪, new 利用日(LocalDate.now()), 片道往復.往復, new 人数(1), new 人数(1), 特急利用.ひかり指定席).get円());
-        System.out.println(料金計算(駅.姫路, new 利用日(LocalDate.now()), 片道往復.往復, new 人数(1), new 人数(1), 特急利用.ひかり指定席).get円());
-        System.out.println(料金計算(駅.姫路, new 利用日(LocalDate.now()), 片道往復.往復, new 人数(1), new 人数(30), 特急利用.ひかり指定席).get円());
-    }
-
     public static 料金 料金計算(駅 降車駅, 利用日 _利用日, 片道往復 _片道往復, 人数 大人人数, 人数 子供人数, 特急利用 _特急利用) {
 
         人数 無料人数 = 大人人数.足す(子供人数).get無料人数();

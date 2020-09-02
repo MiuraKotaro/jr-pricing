@@ -1,0 +1,74 @@
+import jr.pricing.jrpricing.domain.model.fare.料金
+import spock.lang.Specification
+import spock.lang.Unroll
+
+
+class 料金Spec extends Specification {
+    /**
+     * 正常系
+     */
+
+    @Unroll
+    def "料金コンストラクタ正常"(int a) {
+        setup:
+        def fare = new 料金(a)
+
+        expect:
+        fare != null
+
+        where:
+        a   | _
+        0   | _
+        10  | _
+        20  | _
+        200 | _
+    }
+
+    @Unroll
+    def "料金.足す正常spec"(int a, int b, int c) {
+        expect:
+        new 料金(a).足す(new 料金(b)).get円() == c
+
+        where:
+        a  | b  || c
+        10 | 20 || 30
+        90 | 70 || 160
+    }
+
+    /**
+     * 異常系
+     */
+
+    @Unroll
+    def "料金を少数でコンストラクト"(double a) {
+        when:
+        new 料金(a)
+
+        then:
+        thrown(RuntimeException)
+
+        where:
+        a    | _
+        10.0 | _
+        30.3 | _
+    }
+
+    @Unroll
+    def "料金コンストラクタで例外が出る場合"(int a) {
+        when:
+        new 料金(a)
+
+        then:
+        thrown(RuntimeException)
+
+        where:
+        a   | _
+        9   | _
+        11  | _
+        99  | _
+        -1  | _
+        -90 | _
+        -98 | _
+    }
+
+}
