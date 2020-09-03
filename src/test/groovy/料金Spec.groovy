@@ -1,3 +1,4 @@
+import jr.pricing.jrpricing.domain.model.fare.割引率
 import jr.pricing.jrpricing.domain.model.fare.料金
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -32,6 +33,22 @@ class 料金Spec extends Specification {
         a  | b  || c
         10 | 20 || 30
         90 | 70 || 160
+    }
+
+    def "料金.割引正常"(int a, int yen) {
+        setup:
+        def fare = new 料金(10000)
+        def par = new 割引率(a)
+
+        expect:
+        fare.割引(par).get円() == yen
+
+        where:
+        a   || yen
+        0   || 10000
+        1   || 9900
+        99  || 100
+        100 || 0
     }
 
     /**

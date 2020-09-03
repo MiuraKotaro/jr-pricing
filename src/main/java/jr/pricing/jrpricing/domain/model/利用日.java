@@ -1,9 +1,13 @@
 package jr.pricing.jrpricing.domain.model;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
+@EqualsAndHashCode
+@ToString
 @AllArgsConstructor
 public class 利用日 {
     private final LocalDate value;
@@ -15,4 +19,5 @@ public class 利用日 {
     public boolean isBefore(int month, int day) {
         return value.isBefore(LocalDate.of(value.getYear(), month, day));
     }
+
 }

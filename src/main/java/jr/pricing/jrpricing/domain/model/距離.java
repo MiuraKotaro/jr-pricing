@@ -1,5 +1,10 @@
 package jr.pricing.jrpricing.domain.model;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@EqualsAndHashCode
+@ToString
 public class 距離 {
     private final int キロメートル;
 
@@ -13,4 +18,5 @@ public class 距離 {
     public boolean 大なりイコール(距離 _距離) {
         return キロメートル >= _距離.キロメートル;
     }
+
 }

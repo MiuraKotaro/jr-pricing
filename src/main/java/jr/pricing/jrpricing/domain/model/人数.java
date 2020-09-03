@@ -1,7 +1,11 @@
 package jr.pricing.jrpricing.domain.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
+@EqualsAndHashCode
+@ToString
 @Getter
 public class 人数 {
     private final int value;

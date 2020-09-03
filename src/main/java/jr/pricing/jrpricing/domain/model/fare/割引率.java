@@ -1,5 +1,10 @@
 package jr.pricing.jrpricing.domain.model.fare;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@EqualsAndHashCode
+@ToString
 public class 割引率 {
     private final int パーセント;
 
@@ -13,4 +18,5 @@ public class 割引率 {
     double get百分率() {
         return パーセント / 100.0;
     }
+
 }

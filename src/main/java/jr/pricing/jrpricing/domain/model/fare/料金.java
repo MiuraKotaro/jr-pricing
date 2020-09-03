@@ -1,8 +1,12 @@
 package jr.pricing.jrpricing.domain.model.fare;
 
 import jr.pricing.jrpricing.domain.model.人数;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
+@EqualsAndHashCode
+@ToString
 @Getter
 public class 料金 {
     private final int 円;
@@ -33,4 +37,5 @@ public class 料金 {
         // １の位切り捨て
         return new 料金((int) (円 * (1 - _割引率.get百分率()) / 10) * 10);
     }
+
 }
