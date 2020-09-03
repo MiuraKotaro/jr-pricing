@@ -3,12 +3,12 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 
+@Unroll
 class 料金Spec extends Specification {
     /**
      * 正常系
      */
 
-    @Unroll
     def "料金コンストラクタ正常"(int a) {
         setup:
         def fare = new 料金(a)
@@ -24,7 +24,6 @@ class 料金Spec extends Specification {
         200 | _
     }
 
-    @Unroll
     def "料金.足す正常spec"(int a, int b, int c) {
         expect:
         new 料金(a).足す(new 料金(b)).get円() == c
@@ -39,7 +38,6 @@ class 料金Spec extends Specification {
      * 異常系
      */
 
-    @Unroll
     def "料金を少数でコンストラクト"(double a) {
         when:
         new 料金(a)
@@ -53,7 +51,6 @@ class 料金Spec extends Specification {
         30.3 | _
     }
 
-    @Unroll
     def "料金コンストラクタで例外が出る場合"(int a) {
         when:
         new 料金(a)

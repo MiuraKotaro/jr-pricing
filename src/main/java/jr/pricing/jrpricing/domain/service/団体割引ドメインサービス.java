@@ -1,7 +1,9 @@
-package jr.pricing.jrpricing.domain.model;
+package jr.pricing.jrpricing.domain.service;
 
 import jr.pricing.jrpricing.domain.model.fare.割引率;
 import jr.pricing.jrpricing.domain.model.fare.料金;
+import jr.pricing.jrpricing.domain.model.人数;
+import jr.pricing.jrpricing.domain.model.利用日;
 
 public class 団体割引ドメインサービス {
     public static 料金 団体時期割引計算(料金 一人分片道運賃, 利用日 _利用日, 人数 大人人数, 人数 子供人数) {
