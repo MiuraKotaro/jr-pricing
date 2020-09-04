@@ -1,11 +1,12 @@
 package jr.pricing.jrpricing.domain.model;
 
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 import lombok.ToString;
 
 @EqualsAndHashCode
 @ToString
-public class 距離 {
+public class 距離 implements Comparable<距離> {
     private final int キロメートル;
 
     public 距離(int キロメートル) {
@@ -15,8 +16,8 @@ public class 距離 {
         this.キロメートル = キロメートル;
     }
 
-    public boolean 大なりイコール(距離 _距離) {
-        return キロメートル >= _距離.キロメートル;
+    @Override
+    public int compareTo(@NonNull 距離 o) {
+        return this.キロメートル - o.キロメートル;
     }
-
 }
