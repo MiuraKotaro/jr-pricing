@@ -1,15 +1,11 @@
 package jr.pricing.jrpricing.domain.model.fare;
 
 import jr.pricing.jrpricing.domain.model.人数;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Value;
 
-@EqualsAndHashCode
-@ToString
-@Getter
+@Value
 public class 料金 {
-    private final int 円;
+    int 円;
 
     public 料金(int 円) {
         if (円 < 0) {

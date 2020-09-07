@@ -30,6 +30,22 @@ class 人数Spec extends Specification {
         101 || 3
     }
 
+    def "#a .compareTo( #b ) == #c "() {
+        setup:
+        def A = new 人数(a)
+        def B = new 人数(b)
+
+        expect:
+        A <=> B == c
+
+        where:
+        a | b || c
+        3 | 2 || 1
+        3 | 3 || 0
+        5 | 5 || 0
+        4 | 10 || -1
+    }
+
     /**
      * 異常系
      */

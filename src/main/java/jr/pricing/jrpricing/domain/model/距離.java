@@ -18,6 +18,6 @@ public class 距離 implements Comparable<距離> {
 
     @Override
     public int compareTo(@NonNull 距離 o) {
-        return this.キロメートル - o.キロメートル;
+        return Integer.compare(this.キロメートル, o.キロメートル);
     }
 }

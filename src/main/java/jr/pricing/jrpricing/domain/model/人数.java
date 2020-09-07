@@ -1,15 +1,11 @@
 package jr.pricing.jrpricing.domain.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NonNull;
-import lombok.ToString;
+import lombok.Value;
 
-@EqualsAndHashCode
-@ToString
-@Getter
+@Value
 public class 人数 implements Comparable<人数> {
-    private final int value;
+    int value;
 
     public 人数(int i) {
         if (i < 0) {
@@ -33,6 +29,6 @@ public class 人数 implements Comparable<人数> {
 
     @Override
     public int compareTo(@NonNull 人数 o) {
-        return this.value - o.value;
+        return Integer.compare(value, o.value);
     }
 }
