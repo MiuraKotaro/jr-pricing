@@ -22,11 +22,6 @@ public class 人数 implements Comparable<人数> {
         return new 人数(value - 引く人数.value);
     }
 
-    public 人数 get無料人数() {
-        final 人数 無料化最少人数 = new 人数(31);
-        return this.compareTo(無料化最少人数) >= 0 ? new 人数((value + 49) / 50) : new 人数(0);
-    }
-
     @Override
     public int compareTo(@NonNull 人数 o) {
         return Integer.compare(value, o.value);

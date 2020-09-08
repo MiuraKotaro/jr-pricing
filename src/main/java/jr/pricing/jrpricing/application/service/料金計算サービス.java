@@ -3,18 +3,14 @@ package jr.pricing.jrpricing.application.service;
 import jr.pricing.jrpricing.domain.model.fare.料金;
 import jr.pricing.jrpricing.domain.model.*;
 import jr.pricing.jrpricing.domain.service.団体割引ドメインサービス;
+import jr.pricing.jrpricing.domain.service.無料人数ドメインサービス;
 
 public class 料金計算サービス {
     public static 料金 料金計算(駅 降車駅, 利用日 _利用日, 片道往復 _片道往復, 人数 大人人数, 人数 子供人数, 特急利用 _特急利用) {
 
-        人数 無料人数 = 大人人数.足す(子供人数).get無料人数();
-        if (大人人数.compareTo(無料人数) >= 0) {
-            大人人数 = 大人人数.引く(無料人数);
-        } else {
-            無料人数 = 無料人数.引く(大人人数);
-            大人人数 = new 人数(0);
-            子供人数 = 子供人数.引く(無料人数);
-        }
+        無料人数ドメインサービス 無料人数 = new 無料人数ドメインサービス(大人人数, 子供人数);
+        大人人数 = 大人人数.引く(無料人数.get大人無料人数());
+        子供人数 = 子供人数.引く(無料人数.get子供無料人数());
 
         料金 片道全員金額 = new 料金(0);
         if (大人人数.compareTo(new 人数(1)) >= 0) {
