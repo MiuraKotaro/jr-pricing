@@ -9,7 +9,7 @@ public class 人数 implements Comparable<人数> {
 
     public 人数(int i) {
         if (i < 0) {
-            throw new RuntimeException("0以上の整数を入力してください。");
+            throw new RuntimeException("0以上" + Integer.MIN_VALUE + "以下の整数を入力してください。");
         }
         value = i;
     }

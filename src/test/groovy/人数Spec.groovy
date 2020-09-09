@@ -36,7 +36,22 @@ class 人数Spec extends Specification {
         thrown(RuntimeException)
 
         where:
-        a  | _
-        -1 | _
+        a           | _
+        -1          | _
+        20000000000 | _
+    }
+
+    def "異常系：new 人数(#a).足す(new 人数(#b))"() {
+        when:
+        new 人数(a).足す(new 人数(b))
+
+        then:
+        thrown(RuntimeException)
+
+        where:
+        a           | b
+        -2          | -3
+        20000000000 | 20000000000
+
     }
 }
