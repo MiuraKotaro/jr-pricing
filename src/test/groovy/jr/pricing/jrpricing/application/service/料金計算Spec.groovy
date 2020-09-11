@@ -1,4 +1,5 @@
-import jr.pricing.jrpricing.application.service.料金計算サービス
+package jr.pricing.jrpricing.application.service
+
 import jr.pricing.jrpricing.domain.model.*
 import spock.lang.Specification
 import spock.lang.Unroll

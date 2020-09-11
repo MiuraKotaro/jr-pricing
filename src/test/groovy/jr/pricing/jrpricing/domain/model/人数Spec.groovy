@@ -1,4 +1,5 @@
-import jr.pricing.jrpricing.domain.model.人数
+package jr.pricing.jrpricing.domain.model
+
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -43,7 +44,7 @@ class 人数Spec extends Specification {
 
     def "異常系：new 人数(#a).足す(new 人数(#b))"() {
         when:
-        new 人数(a).足す(new 人数(b))
+        new 人数(a as int).足す(new 人数(b as int))
 
         then:
         thrown(RuntimeException)

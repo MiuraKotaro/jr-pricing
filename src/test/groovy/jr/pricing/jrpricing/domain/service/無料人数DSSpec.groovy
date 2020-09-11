@@ -1,8 +1,10 @@
+package jr.pricing.jrpricing.domain.service
+
 import jr.pricing.jrpricing.domain.model.人数
-import jr.pricing.jrpricing.domain.service.無料人数ドメインサービス
 import spock.lang.Specification
+import spock.lang.Unroll
 
-
+@Unroll
 class 無料人数DSSpec extends Specification {
     def "get無料人数正常"(int a, int b) {
         setup:

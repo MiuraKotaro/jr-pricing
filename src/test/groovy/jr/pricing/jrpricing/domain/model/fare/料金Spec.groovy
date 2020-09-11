@@ -1,8 +1,7 @@
-import jr.pricing.jrpricing.domain.model.fare.割引率
-import jr.pricing.jrpricing.domain.model.fare.料金
+package jr.pricing.jrpricing.domain.model.fare
+
 import spock.lang.Specification
 import spock.lang.Unroll
-
 
 @Unroll
 class 料金Spec extends Specification {

@@ -30,6 +30,5 @@ public enum 特急利用 {
         }
     };
 
-
     public abstract 料金 get特急料金(駅 降車駅);
 }
