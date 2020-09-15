@@ -3,12 +3,19 @@ package jr.pricing.jrpricing.domain.model
 import spock.lang.Specification
 import spock.lang.Unroll
 
-
 @Unroll
 class 人数Spec extends Specification {
     /**
      * 正常系
      */
+    def "正常：new 人数(#a)"(int a) {
+        setup:
+        new 人数(a)
+
+        where:
+        a << [0, 1, 10, 100, 1 << 30, (1 << 31) - 1, Integer.MAX_VALUE, 1L << 32]
+    }
+
     def "#a .compareTo( #b ) == #c "() {
         setup:
         def A = new 人数(a)
@@ -29,7 +36,7 @@ class 人数Spec extends Specification {
      * 異常系
      */
 
-    def "コンストラクタ異常"(int a) {
+    def "異常：new 人数(#a)"(int a) {
         when:
         new 人数(a)
 
@@ -37,9 +44,7 @@ class 人数Spec extends Specification {
         thrown(RuntimeException)
 
         where:
-        a           | _
-        -1          | _
-        20000000000 | _
+        a << [-1, Integer.MAX_VALUE + 1, Integer.MAX_VALUE * 2]
     }
 
     def "異常系：new 人数(#a).足す(new 人数(#b))"() {
@@ -53,6 +58,5 @@ class 人数Spec extends Specification {
         a           | b
         -2          | -3
         20000000000 | 20000000000
-
     }
 }

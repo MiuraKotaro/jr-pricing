@@ -9,32 +9,39 @@ class 料金Spec extends Specification {
      * 正常系
      */
 
-    def "料金コンストラクタ正常"(int a) {
+    def "正常：new 料金(#a)"(int a) {
         setup:
-        def fare = new 料金(a)
-
-        expect:
-        fare != null
+        new 料金(a)
 
         where:
-        a   | _
-        0   | _
-        10  | _
-        20  | _
-        200 | _
+        a << [0, 10, 20, 110, 200]
     }
 
-    def "料金.足す正常spec"(int a, int b, int c) {
+    def "正常：料金(#a).足す(料金(#b)).get円() == #c"(int a, int b, int c) {
         expect:
         new 料金(a).足す(new 料金(b)).get円() == c
 
         where:
-        a  | b  || c
-        10 | 20 || 30
-        90 | 70 || 160
+        a  | b
+        10 | 20
+        90 | 70
+        c = a + b
     }
 
-    def "料金.割引正常"(int a, int yen) {
+    def "正常：料金(#a).引く(料金(#b)).get円() == #c"(int a, int b, int c) {
+        expect:
+        new 料金(a).引く(new 料金(b)).get円() == c
+
+        where:
+        a   | b
+        0   | 0
+        30  | 20
+        90  | 70
+        110 | 110
+        c = a - b
+    }
+
+    def "正常：料金(11110).割引(#a)"(int a, int yen) {
         setup:
         def fare = new 料金(11110)
         def par = new 割引率(a)
@@ -51,7 +58,7 @@ class 料金Spec extends Specification {
      * 異常系
      */
 
-    def "料金を少数でコンストラクト"(double a) {
+    def "異常：new 料金(double #a)"() {
         when:
         new 料金(a)
 
@@ -59,12 +66,10 @@ class 料金Spec extends Specification {
         thrown(RuntimeException)
 
         where:
-        a    | _
-        10.0 | _
-        30.3 | _
+        a << [10.0, 30.3]
     }
 
-    def "料金コンストラクタで例外が出る場合"(int a) {
+    def "異常：new 料金(int #a)"() {
         when:
         new 料金(a)
 
@@ -72,13 +77,32 @@ class 料金Spec extends Specification {
         thrown(RuntimeException)
 
         where:
-        a   | _
-        9   | _
-        11  | _
-        99  | _
-        -1  | _
-        -90 | _
-        -98 | _
+        a << [9, 11, 99, -1, -90, -98]
+    }
+
+    def "異常：料金(#a).足す(料金(#b))"(int a, int b) {
+
+        when:
+        new 料金(a).足す(new 料金(b))
+
+        then:
+        thrown(RuntimeException)
+
+        where:
+        a          | b
+        Integer.MAX_VALUE / 2 | Integer.MAX_VALUE / 2 + 1
+    }
+
+    def "異常：料金(#a).引く(料金(#b)).get円()"(int a, int b) {
+        when:
+        new 料金(a).引く(new 料金(b))
+
+        then:
+        thrown(RuntimeException)
+
+        where:
+        a | b
+        0 | 20
     }
 
 }
