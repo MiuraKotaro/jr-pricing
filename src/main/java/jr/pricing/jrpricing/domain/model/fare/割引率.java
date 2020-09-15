@@ -18,5 +18,4 @@ public class 割引率 {
     double get百分率() {
         return パーセント / 100.0;
     }
-
 }

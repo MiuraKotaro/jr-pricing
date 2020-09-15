@@ -22,6 +22,9 @@ public class 料金 {
     }
 
     public 料金 引く(料金 引く数) {
+        if (円 < 引く数.円){
+            throw new RuntimeException("計算結果が負になります。");
+        }
         return new 料金(円 - 引く数.円);
     }
 
